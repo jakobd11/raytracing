@@ -12,8 +12,8 @@ import javax.swing.JFrame;
 
 public class Display extends Canvas implements Runnable {
 
-	public static final int height = 800;
-	public static final int width = 1000;
+	public static final int height = 1440;
+	public static final int width = 2560;
 	public static final String title = "Ray Tracing";
 	
 	private Thread thread;

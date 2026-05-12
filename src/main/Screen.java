@@ -15,8 +15,8 @@ public class Screen extends Render {
 			pixels[i] = 0;
 		}
 		
-		for (int i = 0; i < 360; i++) {
-			double angle = (2 * Math.PI * i) / 360.0;
+		for (int i = 0; i < 180; i++) {
+			double angle = (2 * Math.PI * i) / 180.0;
 			for (int j = 0; j < 1000; j++) {
 				int px = (int)(light.x + Math.cos(angle)*j);
 				int py = (int)(light.y + Math.sin(angle)*j);

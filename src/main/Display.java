@@ -12,7 +12,7 @@ import javax.swing.JFrame;
 
 public class Display extends Canvas implements Runnable {
 
-	public static final int height = 1000;
+	public static final int height = 800;
 	public static final int width = 1000;
 	public static final String title = "Ray Tracing";
 	
@@ -21,6 +21,8 @@ public class Display extends Canvas implements Runnable {
 	private BufferedImage img;
 	private boolean running = false;
 	private int[] pixels;
+	private Light light = new Light(width/2-100, height/2);
+	private Ball ball = new Ball(width/2+100, height/2, 50);
 	
 	private static int fps;
 	private static int time = 0;
@@ -29,7 +31,8 @@ public class Display extends Canvas implements Runnable {
 		Dimension size = new Dimension(width, height);
 		setPreferredSize(size);
 		
-		img = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);
+		screen = new Screen(width, height, light, ball);
+		img = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
 		pixels = ((DataBufferInt) img.getRaster().getDataBuffer()).getData();
 	}
 	
@@ -98,12 +101,12 @@ public class Display extends Canvas implements Runnable {
 
 		screen.render();
 
-		for (int i = 0; i < WIDTH * HEIGHT; i++) {
+		for (int i = 0; i < width * height; i++) {
 			pixels[i] = screen.pixels[i];
 		}
 
 		Graphics g = bs.getDrawGraphics();
-		g.drawImage(img, 0, 0, WIDTH, HEIGHT, null);
+		g.drawImage(img, 0, 0, width, height, null);
 		g.setColor(Color.GREEN);
 		g.drawString(fps + "fps", 10, 20);
 		g.dispose();
@@ -117,10 +120,9 @@ public class Display extends Canvas implements Runnable {
 		frame.pack();
 		frame.setTitle(title);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setSize(dsp.getSize());
 		frame.setLocationRelativeTo(null);
 		frame.setResizable(false);
-		frame.setVisible(false);
+		frame.setVisible(true);
 		
 		dsp.start();
 	}

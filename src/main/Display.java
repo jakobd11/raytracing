@@ -34,6 +34,13 @@ public class Display extends Canvas implements Runnable {
 		screen = new Screen(width, height, light, ball);
 		img = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
 		pixels = ((DataBufferInt) img.getRaster().getDataBuffer()).getData();
+		
+		addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+		    public void mouseDragged(java.awt.event.MouseEvent e) {
+		        light.x = e.getX();
+		        light.y = e.getY();
+		    }
+		});
 	}
 	
 	private void start() {

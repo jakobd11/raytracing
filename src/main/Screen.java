@@ -36,7 +36,7 @@ public class Screen extends Render {
 		    for (int x = 0; x < width; x++) {
 		        int dx = x - (int)ball.x;
 		        int dy = y - (int)ball.y;
-		        if (dx*dx + dy*dy <= ball.radius * ball.radius) {
+		        if (dx*dx + dy*dy <= (ball.radius * ball.radius)-250) {
 		            pixels[x + y * width] = 0x888888; // grey ball
 		        }
 		    }
